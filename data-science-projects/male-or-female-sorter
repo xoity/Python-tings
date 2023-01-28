@@ -1,0 +1,55 @@
+#training and initial code by seraj raval, further sophistication by yours truly :) 
+
+from sklearn import tree
+
+# training data
+# [height, weight, shoe size]
+X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], 
+[190, 90, 47], [175, 64, 39], [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
+
+Y = ['male', 'female', 'female', 'female', 'male', 'male', 'male', 'male', 'female', 'male', 'male']
+
+# initialize decision tree classifier
+clf = tree.DecisionTreeClassifier()
+
+# train the classifier
+clf = clf.fit(X, Y)
+
+# initialize lists to store predictions
+male = []
+female = []
+
+# control variable for loop
+another = 'y'
+
+while another == 'y':
+    # ask for prediction from user input [height, weight, shoe size]
+    int1 = int(input("Enter height: "))
+    int2 = int(input("Enter weight: "))
+    int3 = int(input("Enter shoe size: "))
+
+    # make prediction
+    predictions = clf.predict([[int1, int2, int3]])
+
+    # save the prediction in its respective list
+    for prediction in predictions:
+        if prediction == 'male':
+            male.append(prediction)
+        elif prediction == 'female':
+            female.append(prediction)
+
+    # print the prediction
+    print(predictions)
+
+    # ask the user if they would like to input another set of data
+    another = input("Would you like to input another set of data? (y/n): ")
+
+# ask if the user would like to view the male or female list
+list = input("Would you like to view the male or female list? (y/n): ")
+
+if list == 'y':
+    # print the male list
+    print(male)
+
+    # print the female list
+    print(female)
